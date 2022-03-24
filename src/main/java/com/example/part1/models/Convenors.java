@@ -1,11 +1,24 @@
 package com.example.part1.models;
 
+import javax.persistence.*;
 import javax.swing.text.Position;
+import java.util.HashSet;
+import java.util.Set;
 
+@SuppressWarnings("JpaAttributeTypeInspection")
+@Entity
 public class Convenors {
-    public long id;
-    public String name;
-    public Position position;
+
+    @Id
+    @GeneratedValue
+    private long id;
+    private String name;
+    private Position position;
+
+
+    @ManyToMany(mappedBy = "convenors")
+    private Set<Modules> modules = new HashSet<>();
+
 
     public long getId() {
         return id;
@@ -29,5 +42,9 @@ public class Convenors {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void setModules(Set<Modules> modules) {
+        this.modules = modules;
     }
 }

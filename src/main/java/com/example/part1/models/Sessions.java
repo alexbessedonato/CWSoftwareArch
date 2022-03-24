@@ -1,12 +1,19 @@
 package com.example.part1.models;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
 public class Sessions {
-    public long id;
-    public String topic;
-    public Timestamp datetime;
-    public int duration;
+    @Id
+    @GeneratedValue
+    private long id;
+    private String topic;
+    private Timestamp datetime;
+    private int duration;
+
+    @ManyToOne
+    private Modules modules;
 
     public long getId() {
         return id;
@@ -40,4 +47,11 @@ public class Sessions {
         this.duration = duration;
     }
 
+    public Modules getModules() {
+        return modules;
+    }
+
+    public void setModules(Modules modules) {
+        this.modules = modules;
+    }
 }
